@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load hitcount_tags %}
+{% load comment_tags %}
+{% load static %}
+{% block title %}خانه{% endblock %}
+{% block content %}
+
+
+    <main>
+
+        <section class="py-5">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h2 class="title-section">تازه ترین ویدیو ها</h2>
+                    <a href="{% url 'Article:Video_list' %}" class="btn custom-btn">
+                        نمایش همه
+                    </a>
+                </div>
+                <div class="row">
+                    {% for article in article %}
+                        {% if article.published  %}
+
+
+                            <!-- item -->
+                            <div class="col-md-6 col-lg-4 my-2">
+                                <div class="custom-bg">
+                                    <div class="video-card">
+                                        <a href="{% url 'Article:video_detail' article.pk %}"
+                                           class="position-relative d-block ">
+                                            <img src="{{ article.image.url }}" alt="" class="img-fluid w-100 h-100">
+                                            <div class="video-play-btn">
+                                                <i class="fa fa-play"></i>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between video-category-time">
+                                                <h6 class="">{{ article.category.first.title }}</h6>
+                                                <span class="vid-time">{{ article.time }}</span>
+                                            </div>
+                                            <div class="video-card-details">
+                                                <div>
+                                                    <span>{% get_hit_count for article %}</span>
+                                                    <i class="fa fa-eye"></i>
+                                                </div>
+                                                <div>
+                                                    <span>{{ article.number_of_likes }}</span>
+                                                    <i class="fa fa-heart"></i>
+                                                </div>
+                                                <div>
+                                                    <span>{% get_comments_count article user %}</span>
+                                                    <i class="fa fa-comment"></i>
+                                                </div>
+                                            </div>
+                                            <div class="article-overlay"></div>
+                                        </a>
+
+                                    </div>
+                                    <a href="#">
+                                        <h5 class="video-card-title m-2">{{ article.title }}</h5>
+                                    </a>
+                                    </a>
+                                    <div class="my-3 pb-3 mx-2">
+                                        <i class="fa fa-user  ml-1 "></i>
+                                        <span>{{ article.teacher.get_full_name }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end item -->
+                        {% endif %}
+
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+
+        <section class="py-5">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h2 class="title-section">پر بازدید ترین ویدیو ها</h2>
+                    <a href="{% url 'Article:Most_view_Video_list' %}" class="btn custom-btn">
+                        نمایش همه
+                    </a>
+                </div>
+                <div class="row">
+                    {% for marticle in most_viewer_article %}
+                        <!-- item -->
+                        <div class="col-md-6 col-lg-4 my-2">
+                            <div class="custom-bg">
+                                <div class="video-card">
+                                    <a href="{% url 'Article:video_detail' marticle.pk %}"
+                                       class="position-relative d-block ">
+                                        <img src="{{ marticle.image.url }}" alt="" class="img-fluid w-100 h-100">
+                                        <div class="video-play-btn">
+                                            <i class="fa fa-play"></i>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between video-category-time">
+                                            <h6 class="">{{ marticle.category.first.title }}</h6>
+                                            <span class="vid-time">{{ marticle.time }}</span>
+                                        </div>
+                                        <div class="video-card-details">
+                                            <div>
+                                                <span>{% get_hit_count for marticle %}</span>
+                                                <i class="fa fa-eye"></i>
+                                            </div>
+                                            <div>
+                                                <span>{{ marticle.number_of_likes }}</span>
+                                                <i class="fa fa-heart"></i>
+                                            </div>
+                                            <div>
+                                                <span>{% get_comments_count marticle user %}</span>
+                                                <i class="fa fa-comment"></i>
+                                            </div>
+                                        </div>
+                                        <div class="article-overlay"></div>
+                                    </a>
+
+                                </div>
+                                <a href="#">
+                                    <h5 class="video-card-title m-2">{{ marticle.title }}</h5>
+                                </a>
+                                </a>
+                                <div class="my-3 pb-3 mx-2">
+                                    <i class="fa fa-user  ml-1 "></i>
+                                    <span>{{ marticle.teacher.get_full_name }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end item -->
+
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+{% endblock %}

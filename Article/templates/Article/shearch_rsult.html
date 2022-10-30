@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}نتایج جستجو{% endblock %}
+{% block content %}
+
+    <nav class="nav-menu nav-menu-pc  d-none d-md-flex px-4" id="navbar">
+        <li id="" class="mx-3 menu-item"><a href="" class="nav-menu-item ">زبان های برنامه نویسی </a>
+            <ul class="sub-menu">
+                <a href="">جاوا</a>
+                <a href="">پایتون </a>
+                <a href="">آیتم</a>
+                <a href=""> آیتم</a>
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+            </ul>
+        </li>
+        <li id="" class="mx-3 menu-item"><a href="" class="nav-menu-item">فریمورک </a>
+            <ul class="sub-menu">
+                <a href="">جنگو</a>
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+            </ul>
+        </li>
+        <li id="" class="mx-3 menu-item"><a href="" class="nav-menu-item">طراحی وب</a>
+            <ul class="sub-menu">
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+            </ul>
+        </li>
+        <li id="" class="mx-3 menu-item"><a href="" class="nav-menu-item">مهارت های ارتباطی</a>
+            <ul class="sub-menu">
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+                <a href="">آیتم</a>
+            </ul>
+        </li>
+    </nav>
+
+    <main>
+
+        <section class="py-5">
+            <div class="container">
+                <div class="row">
+                    {% for article in object_list %}
+                        <!-- item -->
+                        <div class="col-md-6 col-lg-4 my-2">
+                            <div class="custom-bg">
+                                <div class="video-card">
+                                    <a href="{% url 'Article:video_detail' article.pk %}"
+                                       class="position-relative d-block ">
+                                        <img src="{{ article.image.url }}" alt="" class="img-fluid w-100 h-100">
+                                        <div class="video-play-btn">
+                                            <i class="fa fa-play"></i>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between video-category-time">
+                                            <h6 class="">{{ article.category.first.title }}</h6>
+                                            <span class="vid-time">{{ article.time }}</span>
+                                        </div>
+                                        <div class="video-card-details">
+                                            <div>
+                                                <span>{{ article.views }}</span>
+                                                <i class="fa fa-eye"></i>
+                                            </div>
+                                            <div>
+                                                <span>22</span>
+                                                <i class="fa fa-heart"></i>
+                                            </div>
+                                            <div>
+                                                <span>22</span>
+                                                <i class="fa fa-comment"></i>
+                                            </div>
+                                        </div>
+                                        <div class="article-overlay"></div>
+                                    </a>
+
+                                </div>
+                                <a href="#">
+                                    <h5 class="video-card-title m-2">{{ article.title }}</h5>
+                                </a>
+                                </a>
+                                <div class="my-3 pb-3 mx-2">
+                                    <i class="fa fa-user  ml-1 "></i>
+                                    <span>{{ article.teacher.profile.full_name }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end item -->
+
+                    {% endfor %}
+                    <div class="d-flex align-items-center justify-content-center mb-3 pagination">
+                        {% if articles.has_other_pages %}
+                            {% if articles.has_previous %}
+                                <a href="?q={{ query }}&page={{ articles.previous_page_number }}" class="mx-1"><i
+                                        class="fa fa-chevron-right"></i></a>
+                            {% endif %}
+                            {% for i in articles.paginator.page_range %}
+                                {% if article.number == i %}
+                                    <a href="?page={{ i }}{% if request.Get.q %}&q={{ request.Get.q }}{% endif %}"
+                                       class="active mx-1">{{ i }}</a>
+                                {% else %}
+                                    <a href="?page={{ i }}" class="mx-1">{{ i }}</a>
+                                {% endif %}
+                            {% endfor %}
+                            {% if articles.has_next %}
+                                <a href="?page={{ articles.next_page_number }}&q={{ query }}"
+                                   class="mx-1"><i class="fa fa-chevron-left"></i></a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}

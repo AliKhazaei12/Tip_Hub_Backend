@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}ویرایش اطلاعات{% endblock %}
+{% block content %}
+
+    <main>
+
+        <section class="py-5">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-sm-9 col-md-11 col-lg-10">
+                        <div class="user-panel custom-bg">
+                            <form enctype="multipart/form-data" method="post">
+                                {% csrf_token %}
+                                <div class="user-panel-box">
+                                    <div class="user-panel-profile">
+                                        {% if request.user.image %}
+                                            <img src="{{ request.user.image.url }}" alt="" onclick="click_input()">
+                                        {% else %}
+                                            <img src="{% static "assets/image/sutdent-prof.png" %}" alt=""
+                                                 onclick="click_input()">
+                                        {% endif %}
+                                    </div>
+                                    <div class="change-profile-btn" hidden>
+                                        {{ u_form.image_user }}
+                                    </div>
+                                    <!-- item -->
+                                    <div class="user-panel-field">
+                                        <i class="fa fa-user"></i>
+                                        {{ p_form.full_name }}
+                                    </div>
+                                    <!-- item -->
+                                    <div class="user-panel-field">
+                                        <i class="fa fa-envelope"></i>
+                                        {{ u_form.email }}
+                                    </div>
+                                    <!-- item -->
+                                    <div class="user-panel-field">
+                                        <i class="fa fa-phone"></i>
+                                        {{ u_form.phonenumber }}
+                                    </div>
+                                    <!-- item -->
+                                    <!-- item -->
+                                    <div class="user-panel-field" >
+                                        <i class="fa fa-address-book p-2" ></i>
+                                        {{ u_form.bio }}
+                                    <!-- item -->
+                                </div>
+                                <div class="d-flex justify-content-center mt-3 ">
+                                    <button type="submit" class="btn custom-btn w-50">اعمال تغییرا</button>
+                                </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{#        <script>#}
+{#            function click_input() {#}
+{#                document.getElementById('id_image').click()#}
+{#            }#}
+{#        </script>#}
+
+
+    </main>
+
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}دلیت اکانت کاربری{% endblock %}
+{% block content %}
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="col-md-12 text-center mx-auto">
+                    <div class="card card-danger">
+                        <div class="card-header">
+                            <h3 class="card-title mb-0 float-left">حذف اکانت</h3>
+                        </div>
+                        <div class="card-body py-4">
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="form-check mb-3">
+                                    {#                        <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation">#}
+                                    <label class="form-check-label" for="accountActivation">من غیرفعال کردن حساب خود را
+                                        تأیید می
+                                        کنم</label>
+                                </div>
+                                <button type="submit" class="btn btn-danger ">غیر فعال کردن اکانت کاربری</button>
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

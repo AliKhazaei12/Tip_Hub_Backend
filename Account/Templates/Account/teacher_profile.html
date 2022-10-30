@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-5 col-lg-5 my-3">
+                <div class="position-sticky" style="top: 96px; max-height: fit-content;">
+
+                    <div class="teacher-item p-3">
+                        <div class="d-flex flex-column  align-items-center pb-3 border-bottom">
+                            <img src="{{ user.image.url }}"
+                                 alt="{{ user.username }}" class="img-fluid my-3">
+                            <p>{{ user.get_full_name }}</p>
+                            <p class="dana-regular line-clamp"><a href="/cdn-cgi/l/email-protection"
+                                                                  class="__cf_email__"
+                                                                  data-cfemail="2b43054e454a524a5f421a18131b6b4c464a424705484446">[email&#160;protected]</a>
+                            </p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between my-2">
+                            <div class="d-flex align-items-center color6464">
+                                <i class="fas fa-play-circle pl-2"></i>
+                                <div class="font13">دوره ها</div>
+                            </div>
+                            <div>9</div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between my-2">
+                            <div class="d-flex align-items-center color6464">
+                                <i class="fas fa-calendar pl-2"></i>
+                                <div class="font13">تاریح عضویت</div>
+                            </div>
+                            <div>{{ user.date_joined }}</div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between my-2">
+                            <div class="d-flex align-items-center color6464">
+                                <i class="fas fa-users pl-2"></i>
+                                <div class="font13"> دنبال کننده</div>
+                            </div>
+                            <div>178</div>
+                        </div>
+                        <div class="mt-3 text-sm">
+                            <form method="post" action="/Masters/Profile/mr.hosseinenayati/Follow">
+                                <button type="submit" class="btn btn-success btn-block py-1.5 rounded text-center">
+                                    دنبال کردن
+                                </button>
+                                <input name="__RequestVerificationToken" type="hidden"
+                                       value="CfDJ8COr3NEIGaBHkSGEiDhZzwNUvtxCZZevWNSORaDYpxQYyfs-tT1WwK5H15gHRctM2op6hnboYX1TtMRupd_gI15NDheu9pHudfNPVdHzUGsDLxEIRbG6YgcbRjbFxRz86icsjLgZcGm5PRJi11f3QptA0Bf7R6CH942L6LZ-58A79AoeXTdc-ughQtV4EYkV8w"/>
+                            </form>
+                        </div>
+                        <button type="button" class="mt-3 btn btn-block btn-primary" data-toggle="modal"
+                                data-target="#exampleModal">
+                            ارسال پیام
+                        </button>
+                    </div>
+                    <div class="custom-bg my-2 p-3">
+                        <h6>حسین عنایتی در شبکه های اجتماعی:</h6>
+                        <div class="my-2 d-flex align-items-center justify-content-between">
+                            <a href="https://www.instagram.com/mirradcode/">
+                                <i class="fab fa-instagram teacher-social-media"></i>
+                            </a>
+                            <a target="_blank" href="https://www.instagram.com/mirradcode/"
+                               class="font14">اینستاگرام</a>
+                        </div>
+                    </div>
+                    <div class="custom-bg my-2 p-3">
+                        <h6>بیوگرافی حسین عنایتی</h6>
+                        <p class="font14 dana-regular color6464">
+                        <p>Updating</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-7 col-lg-7 my-3">
+                <div class="teacher-courses p-3">
+                    <a href="#" class="border-bottom ">دوره ها</a>
+
+                        <div class="container-fluid my-4 custom-bg p-2">
+                        <div class=" d-flex align-items-center justify-content-between">
+                            <div class=" w-25 h-100">
+                                <img src="/assets/images/Courses/fffe7902-6576-44d1-84c4-bef1ca429af71156405421844.jpg"
+                                     alt="دوره متخصص بک اند با یادگیری پروژه محور لاراول" class="img-fluid rounded">
+                            </div>
+                            <div class="w-50">
+                                <a href="/course/2071/دوره-متخصص-بک-اند-با-یادگیری-پروژه-محور-لاراول"> دوره متخصص بک اند
+                                    با یادگیری پروژه محور لاراول</a>
+                                <p class="dana-regular color6464">500,000 تومان</p>
+                            </div>
+                            <div>
+                                <a href="/course/2071/دوره-متخصص-بک-اند-با-یادگیری-پروژه-محور-لاراول"
+                                   class="btn custom-btn"> نمایش</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

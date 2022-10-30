@@ -1,0 +1,42 @@
+{#<section#}
+{#        class="nav-header-box-mob d-flex d-sm-flex d-md-none  align-items-center justify-content-between d-md-none d-lg-none position-fixed">#}
+{##}
+{#    <div class="hamburger-icon">#}
+{#        <div class="bar1"></div>#}
+{#        <div class="bar2"></div>#}
+{#        <div class="bar3"></div>#}
+{#    </div>#}
+{#</section>#}
+{##}
+{#</div>#}
+{##}
+{#</header>#}
+
+<nav class="nav-menu nav-menu-pc  d-none d-md-flex px-4" id="navbar">
+    {% for cat in category %}
+        {% if cat.parent == None %}
+
+            <li {% if request.resolver_match.url_name == 'Article:category_detail' %} active {% endif %} id=""
+                                                                                      class="mx-3 menu-item"><a
+                    href="{% url 'Article:category_detail' cat.pk %}"
+                    class="nav-menu-item ">{{ cat.title }}
+                <i class="fa fa-chevron-left chev-icon pr-1"></i></a>
+                <ul class="sub-menu">
+                    {% for i in cat.Children.all %}
+                        <a href="">{{ i.title }}
+                            <i class="fa fa-chevron-left chev-icon pr-1"></i></a>
+                    {% endfor %}
+                </ul>
+
+            </li>
+        {% endif %}
+
+    {% endfor %}
+    <li {% if request.resolver_match.url_name == 'Article:teacherlist' %} active {% endif %} id="" class="mx-3">
+        <a href="{% url 'Account:teacherlist' %}" class="nav-menu-item-mob">مدرسین
+        </a>
+
+    </li>
+
+
+</nav>

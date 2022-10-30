@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_field %}
+{% block title %}پروفایل{% endblock %}
+{% block content %}
+
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Account Settings /</span> Account</h4>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card mb-4">
+                <h5 class="card-header">پروفایل کاربر</h5>
+                <!-- Account -->
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="d-flex align-items-start align-items-sm-center gap-4">
+                            <img src="{{ user.image.url }}" alt="{% static 'assets/image/student-prof.png' %}"
+                                 class="d-block rounded" width="100" height="100">
+                            <div class="button-wrapper">
+                                <div class="button-wrapper">
+                                    {{ form.image }}
+                                    <i class="bx bx-upload d-block d-sm-none"></i>
+                                    <input
+                                            type="file"
+                                            id="id_image"
+                                            class="account-file-input"
+                                            hidden
+                                            accept="image/*"
+                                    />
+                                    {#                                <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">#}
+                                    {#                                    <i class="bx bx-reset d-block d-sm-none"></i>#}
+                                    {#                                    <span class="d-none d-sm-block">بازگردانی عکس</span>#}
+                                    {#                                </button>#}
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-0">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    {{ form.username|as_crispy_field }}
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    {{ form.first_name|as_crispy_field }}
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    {{ form.last_name|as_crispy_field }}
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    {{ form.email|as_crispy_field }}
+                                </div>
+                                <div class="mb-6 col-md-6">
+                                    {{ form.phonenumber|as_crispy_field }}
+                                </div>
+                                <div>
+
+                                </div>
+                                <div class="mb-12 col-md-6">
+                                    <label class="form-label">کاربرویژه تا:</label>
+                                    {{ form.jspecial_user }}
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">استاد:</label>
+                                    {% if user.is_teacher == True %}
+                                        <i class="fa fa-check">{{ user.is_teacher }}</i>
+                                    {% endif %}
+                                </div>
+                                <div class="mb-lg-1 col-md-6">
+                                    {{ form.bio|as_crispy_field }}
+                                </div>
+
+
+                            </div>
+                            <div class="mt-2">
+                                <button class="btn btn-success">اعمال تغییرات</button>
+                                <button type="reset" class="btn btn-outline-secondary">لغو تغییرات</button>
+                                <button  class="btn btn-danger"><a href="{% url 'Account:delete_user' %}"  >حذف اکانت </a></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /Account -->
+        </div>
+
+    </div>
+    </div>
+
+
+
+
+
+{% endblock %}

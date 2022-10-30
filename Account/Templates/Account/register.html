@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}ثبت نام{% endblock %}
+{% block content %}
+
+    <main>
+        <section class="py-5">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-sm-9 col-md-7 col-lg-5">
+                        <div class="custom-bg p-2">
+
+                            <div class="my-3 text-center">عضویت در سایت</div>
+                                <div class="text-center">
+                                    {% if form.errors %}
+                                        {% for field in form %}
+                                            {% for error in field.errors %}
+                                                <div class="alert alert-danger">
+                                                    <strong>{{ error|escape }}</strong>
+                                                </div>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                            <form class="" method="post">
+                                {% csrf_token %}
+                                <div class="field">
+                                    <i class="fa fa-phone"></i>
+                                    {{ form.phonenumber }}
+                                </div>
+                                <div class="field">
+                                    <i class="fa fa-envelope"></i>
+                                    {{ form.email }}
+                                </div>
+                                <div class="field">
+                                    <i class="fa fa-user"></i>
+                                    {{ form.username }}
+                                </div>
+
+
+                                <div class="field">
+                                    <i class="fa fa-lock"></i>
+                                    {{ form.password1 }}
+                                    <i id="show-password1" class="fa fa-eye"></i>
+                                </div>
+                                <div class="field">
+                                    <i class="fa fa-lock"></i>
+                                    {{ form.password2 }}
+                                    <i id="show-password2" class="fa fa-eye"></i>
+
+                                </div>
+                                <div>
+                                    {{ form.captcha }}
+
+                                </div>
+                                <div class="mr-1 d-flex justify-content-between">
+                                    <div>
+                                          <script type="text/javascript">
+                                            document.getElementById("show-password1").addEventListener("click", function () {
+                                                password = document.getElementById("id_password1")
+                                                if (password.type == "password") {
+                                                    password.type = "text"
+                                                    document.getElementById("show-password1").classList = "fas fa-eye-slash"
+                                                } else {
+                                                    password.type = "password"
+                                                    document.getElementById("show-password1").classList = "fa fa-eye"
+                                                }
+                                            })
+                                        </script>
+                                    </div>
+                                    <div>
+                                          <script type="text/javascript">
+                                            document.getElementById("show-password2").addEventListener("click", function () {
+                                                password = document.getElementById("id_password2")
+                                                if (password.type == "password") {
+                                                    password.type = "text"
+                                                    document.getElementById("show-password2").classList = "fas fa-eye-slash"
+                                                } else {
+                                                    password.type = "password"
+                                                    document.getElementById("show-password2").classList = "fa fa-eye"
+                                                }
+                                            })
+                                        </script>
+                                    </div>
+
+
+                                    </div>
+
+                                <div class="my-3">
+                                    <button class="btn custom-btn w-100">عضویت</button>
+                                </div>
+                                <div class="pb-2 border-bottom">
+                                    <span class="small">حساب کاربری دارید؟</span>
+                                    <a href="{% url 'Account:login' %}" class="small">
+                                        ورود به حساب
+                                    </a>
+                                </div>
+                            </form>
+
+
+                            <div class="">
+                                <p class="small text-center my-3">عضویت از طریق حساب‌های کاربری دیگر</p>
+                                <div class="">
+
+                                    <div class="social-accunt">
+
+                                        <a title="Google" class="" href="{% url 'social:begin' 'google-oauth2' %}">
+                                            <img height="24" src="{% static  'assets/image/google.svg' %}"
+                                                 class="d-block m-auto">
+                                        </a>
+
+                                        <a title="GitHub" class="" href="">
+                                            <img height="24" src="{% static 'assets/image/github.svg' %}"
+                                                 class="d-block m-auto">
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+
+
+{% endblock %}
